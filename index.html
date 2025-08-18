@@ -9,7 +9,7 @@
             // Replace with your actual Airtable form URL
             const AIRTABLE_FORM_URL = 'https://airtable.com/app8a1TKEyyMwpF6B/pagGcBqkyTs6s9NMG/form';
 
-            form.addEventListener('submit', async function(e) {
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 const email = emailInput.value.trim();
@@ -20,31 +20,29 @@
                 submitBtn.classList.add('loading');
                 submitBtn.disabled = true;
 
-                try {
-                    // Create FormData for Airtable submission
-                    const formData = new FormData();
-                    formData.append('Email', email);
+                // Create hidden form that submits to Airtable
+                const hiddenForm = document.createElement('form');
+                hiddenForm.style.display = 'none';
+                hiddenForm.action = AIRTABLE_FORM_URL;
+                hiddenForm.method = 'POST';
+                hiddenForm.target = '_blank'; // Opens in new tab briefly
 
-                    // Submit to Airtable using fetch
-                    const response = await fetch(AIRTABLE_FORM_URL, {
-                        method: 'POST',
-                        body: formData,
-                        mode: 'no-cors' // Required for Airtable
-                    });
-
-                    // Since mode is 'no-cors', we can't check response status
-                    // But we'll assume success after reasonable delay
-                    setTimeout(() => {
-                        showThankYou();
-                    }, 1000);
-
-                } catch (error) {
-                    console.error('Submission error:', error);
-                    // Show thank you anyway since no-cors mode doesn't allow error checking
-                    setTimeout(() => {
-                        showThankYou();
-                    }, 1000);
-                }
+                const emailInput_hidden = document.createElement('input');
+                emailInput_hidden.type = 'email';
+                emailInput_hidden.name = 'Email';
+                emailInput_hidden.value = email;
+                
+                hiddenForm.appendChild(emailInput_hidden);
+                document.body.appendChild(hiddenForm);
+                
+                // Submit the form
+                hiddenForm.submit();
+                
+                // Clean up and show thank you
+                setTimeout(() => {
+                    document.body.removeChild(hiddenForm);
+                    showThankYou();
+                }, 1500);
             });
 
             function showThankYou() {
