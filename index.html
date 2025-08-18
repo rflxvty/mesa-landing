@@ -20,27 +20,26 @@
                 submitBtn.classList.add('loading');
                 submitBtn.disabled = true;
 
-                // Create hidden form that submits to Airtable
+                // Create hidden form for direct submission
                 const hiddenForm = document.createElement('form');
                 hiddenForm.style.display = 'none';
                 hiddenForm.action = AIRTABLE_FORM_URL;
                 hiddenForm.method = 'POST';
-                hiddenForm.target = '_blank'; // Opens in new tab briefly
 
-                const emailInput_hidden = document.createElement('input');
-                emailInput_hidden.type = 'email';
-                emailInput_hidden.name = 'Email';
-                emailInput_hidden.value = email;
+                // Create email input field
+                const emailField = document.createElement('input');
+                emailField.type = 'email';
+                emailField.name = 'Email';
+                emailField.value = email;
                 
-                hiddenForm.appendChild(emailInput_hidden);
+                hiddenForm.appendChild(emailField);
                 document.body.appendChild(hiddenForm);
                 
-                // Submit the form
+                // Submit form directly
                 hiddenForm.submit();
                 
-                // Clean up and show thank you
+                // Show thank you message immediately
                 setTimeout(() => {
-                    document.body.removeChild(hiddenForm);
                     showThankYou();
                 }, 1500);
             });
@@ -301,6 +300,14 @@
             <h2 class="hero-header">Where food stories are shared</h2>
             <p class="hero-subheader">Discover traditional recipes, food stories, and more</p>
             
+            <!-- Temporary debug form - remove after testing -->
+            <form action="https://airtable.com/appYOURAPPID/shrYOURFORMID" method="POST" target="_blank" style="margin-top: 20px; padding: 20px; border: 2px solid red;">
+                <h4>DEBUG: Direct Airtable Test</h4>
+                <input name="Email" type="email" placeholder="test@example.com" required style="padding: 10px; margin: 5px;">
+                <button type="submit" style="padding: 10px;">Direct Test Submit</button>
+                <p style="font-size: 12px;">This form submits directly to Airtable to test the URL</p>
+            </form>
+
             <form class="email-form" id="email-form">
                 <input 
                     type="email" 
