@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Mesa - Where food stories are shared. Discover traditional recipes and cultural food wisdom.">
+    <meta name="theme-color" content="#d2691e">
     <title>mesa - Where food stories are shared</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -114,6 +116,8 @@
             outline: none;
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.9);
+            -webkit-appearance: none;
+            -webkit-border-radius: 50px;
         }
 
         .email-input:focus {
@@ -132,6 +136,9 @@
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
+            -webkit-appearance: none;
+            -webkit-border-radius: 50px;
+            touch-action: manipulation;
         }
 
         .submit-btn:hover {
