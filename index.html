@@ -7,7 +7,7 @@
             const resetBtn = document.getElementById('reset-btn');
 
             // Replace with your actual Airtable form URL
-            const AIRTABLE_FORM_URL = 'https://airtable.com/app8a1TKEyyMwpF6B/pagGcBqkyTs6s9NMG/form';
+            const AIRTABLE_FORM_URL = 'https://airtable.com/v0.3/page/pagGcBqkyTs6s9NMG/createRowFromFormElement';
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -300,13 +300,15 @@
             <h2 class="hero-header">Where food stories are shared</h2>
             <p class="hero-subheader">Discover traditional recipes, food stories, and more</p>
             
-            <!-- Temporary debug form - remove after testing -->
-            <form action="https://airtable.com/app8a1TKEyyMwpF6B/pagGcBqkyTs6s9NMG/form" method="POST" target="_blank" style="margin-top: 20px; padding: 20px; border: 2px solid red;">
-                <h4>DEBUG: Direct Airtable Test</h4>
-                <input name="Email" type="email" placeholder="test@example.com" required style="padding: 10px; margin: 5px;">
-                <button type="submit" style="padding: 10px;">Direct Test Submit</button>
-                <p style="font-size: 12px;">Replace the action URL above with your actual Airtable form URL</p>
-            </form>
+            <!-- TEST: Using the actual POST URL -->
+            <div style="margin-top: 20px; padding: 20px; border: 2px solid green; background: #fff;">
+                <h4>DEBUG: Test with Real POST URL</h4>
+                <form action="https://airtable.com/v0.3/page/pagGcBqkyTs6s9NMG/createRowFromFormElement" method="POST" target="_blank" style="border: 1px solid green; padding: 15px; background: #f0fff0;">
+                    <input name="Email" type="email" placeholder="test@example.com" required style="padding: 8px; margin: 5px; width: 200px;">
+                    <button type="submit" style="padding: 8px 15px;">Test Real URL</button>
+                </form>
+                <p style="font-size: 12px; color: green;">Testing with the actual POST endpoint from Network tab</p>
+            </div>
 
             <form class="email-form" id="email-form">
                 <input 
